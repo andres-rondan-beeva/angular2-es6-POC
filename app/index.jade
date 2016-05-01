@@ -1,0 +1,18 @@
+html
+  head
+    title Angular 2 QuickStart
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    // 1. Load libraries
+    // IE required polyfill
+    script(src="/node_modules/systemjs/dist/system.js")
+    
+    script(src='/node_modules/es6-shim/es6-shim.min.js')
+    script(src='/node_modules/angular2/bundles/angular2-polyfills.js')
+    script(src='/node_modules/rxjs/bundles/Rx.umd.js')
+    script(src='/node_modules/angular2/bundles/angular2-all.umd.js')
+    script(src='/node_modules/angular2/bundles/router.dev.js')
+    // 3. Display the application
+  body
+    my-app Loading...    
+  // 2. Load our 'modules'
+  script(src='/dist/app.js')
