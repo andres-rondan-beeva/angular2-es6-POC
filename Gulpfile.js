@@ -1,14 +1,13 @@
-var gulp = require('gulp');
-var plugins = require('gulp-load-plugins')();
-var browserify = require('browserify');
-var babelify = require('babelify');
-var source = require('vinyl-source-stream');
-var buffer = require('vinyl-buffer');
-var watchify = require('watchify');
-var gutil = require('gutil');
-// var sass = require('gulp-sass');
+const gulp = require('gulp');
+const plugins = require('gulp-load-plugins')();
+const browserify = require('browserify');
+const babelify = require('babelify');
+const source = require('vinyl-source-stream');
+const buffer = require('vinyl-buffer');
+const watchify = require('watchify');
+const gutil = require('gutil');
 
-var JADE_SRCS = 'app/**/*.jade',
+const JADE_SRCS = 'app/**/*.jade',
     JS_SRCS_MAIN = 'app/app.js',
     JS_SRCS = 'app/**/*.js',
     SASS_SRCS = 'app/**/*{.scss, .css}',
@@ -25,11 +24,11 @@ function bundle(b) {
 }
 
 function watchJS() {
-    var b = browserify(JS_SRCS_MAIN, watchify.args)
+    const b = browserify(JS_SRCS_MAIN, watchify.args)
         .transform(babelify);
 
-    var w = watchify(b)
-        .on('update', function() {
+    const w = watchify(b)
+        .on('update', () => {
             bundle(w);
         })
         .on('log', gutil.log);
@@ -38,7 +37,7 @@ function watchJS() {
 }
 
 // define tasks here
-gulp.task('jade', function() {
+gulp.task('jade', () => {
 
     gulp.src(JADE_SRCS)
         .pipe(plugins.jade())
@@ -46,15 +45,14 @@ gulp.task('jade', function() {
 
 });
 
-
-gulp.task('buildJS', function() {
+gulp.task('buildJS', () => {
     var b = browserify(JS_SRCS_MAIN)
         .transform(babelify);
 
     return bundle(b);
 });
 
-gulp.task('watch', ['jade', 'buildJS'], function() {
+gulp.task('watch', ['jade', 'buildJS'], () => {
 
     gulp.watch(JADE_SRCS, ['jade']);
     watchJS();
