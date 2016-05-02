@@ -1,2 +1,6 @@
-task([taskItem]="sampleTask")
-{{sampleTask.checked?'true':'false'}}
+div(*ngFor='let task of list')
+    task([taskItem]="task")
+form((submit)="addTask($event)")
+    input(type="submit" style="position: absolute; left: -9999px")
+    .input-field
+      input(placeholder="Crear una tarea...", [(ngModel)]="taskLabel", id="taskLabel", type="text", required)
